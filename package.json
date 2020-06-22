@@ -22,15 +22,27 @@
   },
   "scripts": {
     "postinstall": "presetter bootstrap",
-    "test": "true"
+    "build": "run-s clean build:gatsby",
+    "build:gatsby": "gatsby build --verbose",
+    "clean": "run-p clean:*",
+    "clean:babel": "shx rm -f .babelrc.json",
+    "clean:cache": "shx rm -rf .cache",
+    "clean:codegen": "shx rm -f types/@graphql.ts",
+    "clean:public": "shx rm -rf public",
+    "start": "run-s clean start:gatsby",
+    "start:gatsby": "gatsby develop"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "7.x",
     "@types/react": "16.x",
     "babel-plugin-module-resolver": "4.x",
     "eslint-plugin-react": "7.x",
+    "gatsby": "2.x",
+    "gatsby-plugin-ts-config": "0.2.3",
     "presetter": "1.x",
     "presetter-preset": "1.x"
   },
   "dependencies": {
+    "react-dom": "16.x"
   }
 }
