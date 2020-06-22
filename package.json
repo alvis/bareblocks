@@ -1,0 +1,36 @@
+{
+  "name": "bareblocks",
+  "version": "0.0.0",
+  "description": "Bare building blocks for a modern app with Gatsby, React, PostCSS and Typescript",
+  "keywords": [
+    "gatsby",
+    "boilerplate",
+    "typescript"
+  ],
+  "homepage": "https://github.com/alvis/bareblocks#readme",
+  "bugs": {
+    "url": "https://github.com/alvis/bareblocks/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Alvis HT Tang",
+    "email": "alvis@hilbert.space"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvis/bareblocks.git"
+  },
+  "scripts": {
+    "postinstall": "presetter bootstrap",
+    "test": "true"
+  },
+  "devDependencies": {
+    "@types/react": "16.x",
+    "babel-plugin-module-resolver": "4.x",
+    "eslint-plugin-react": "7.x",
+    "presetter": "1.x",
+    "presetter-preset": "1.x"
+  },
+  "dependencies": {
+  }
+}
