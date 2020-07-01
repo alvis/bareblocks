@@ -12,12 +12,32 @@
  * -------------------------------------------------------------------------
  */
 
+import { useStaticQuery, graphql } from 'gatsby';
 import React from 'react';
 
 import type { FC } from 'react';
 
-export const Landing: FC = (props) => (
-  <React.StrictMode>{props.children}</React.StrictMode>
-);
+import type { LandingLayoutQuery } from '@graphql';
+
+export const Landing: FC = (props) => {
+  const data = useStaticQuery<LandingLayoutQuery>(
+    graphql`
+      query LandingLayout {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `,
+  );
+
+  return (
+    <React.StrictMode>
+      <h1>{data.site?.siteMetadata?.title ?? 'Default Title'}</h1>
+      {props.children}
+    </React.StrictMode>
+  );
+};
 
 Landing.displayName = 'Layout';
