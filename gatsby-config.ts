@@ -16,7 +16,7 @@
  * -------------------------------------------------------------------------
  */
 
-// import type { GatsbyConfig } from 'gatsby';
+import type { GatsbyConfig } from 'gatsby';
 
 // export const siteMetadata: GatsbyConfig['siteMetadata'] = {};
 
@@ -31,3 +31,11 @@
 // export const proxy: GatsbyConfig['proxy'] = {};
 
 // export const developMiddleware: GatsbyConfig['developMiddleware'] = middleware => {};
+
+export const plugins: GatsbyConfig['plugins'] = [
+  'gatsby-plugin-react-helmet',
+];
+
+export default {
+    plugins
+}

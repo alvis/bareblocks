@@ -35,16 +35,20 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.x",
     "@types/react": "16.x",
+    "@types/react-helmet": "6.x",
     "@types/webpack-bundle-analyzer": "3.x",
     "babel-plugin-module-resolver": "4.x",
     "eslint-plugin-react": "7.x",
     "gatsby": "2.x",
+    "gatsby-plugin-react-helmet": "3.x",
     "gatsby-plugin-ts-config": "0.2.3",
+    "gatsby-plugin-typescript": "2.x",
     "presetter": "1.x",
     "presetter-preset": "1.x",
     "webpack-bundle-analyzer": "3.x"
   },
   "dependencies": {
-    "react-dom": "16.x"
+    "react-dom": "16.x",
+    "react-helmet": "6.x"
   }
 }
