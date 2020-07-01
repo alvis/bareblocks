@@ -32,10 +32,21 @@ import type { GatsbyConfig } from 'gatsby';
 
 // export const developMiddleware: GatsbyConfig['developMiddleware'] = middleware => {};
 
+export const siteMetadata: GatsbyConfig['siteMetadata'] = {
+  title: `A Gatsby Web App`,
+};
+
 export const plugins: GatsbyConfig['plugins'] = [
   'gatsby-plugin-react-helmet',
+  {
+    resolve: `gatsby-plugin-graphql-codegen`,
+    options: {
+      fileName: `./types/@graphql.ts`,
+    },
+  },
 ];
 
 export default {
-    plugins
-}
+  siteMetadata,
+  plugins,
+};
