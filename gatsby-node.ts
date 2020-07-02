@@ -108,6 +108,18 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
   }
 };
 
+export const createPagesStatefully: GatsbyNode['createPagesStatefully'] = async ({
+  actions: { createPage },
+}): Promise<void> => {
+  // host all protected pages under /app
+  createPage({
+    path: `/app`,
+    matchPath: '/app/*',
+    component: resolve('./src/app/index.tsx'),
+    context: {},
+  });
+};
+
 /**
  * get the path setting for babel-plugin-module-resolver from tsconfig
  * @returns path alias if present
