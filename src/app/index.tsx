@@ -13,10 +13,14 @@
  * -------------------------------------------------------------------------
  */
 
+import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react';
 import {
   IonApp,
   IonButton,
   IonButtons,
+  IonCard,
+  IonCardContent,
+  IonContent,
   IonHeader,
   IonTitle,
   IonToolbar,
@@ -29,21 +33,36 @@ import '@ionic/core/css/ionic.bundle.css';
 
 import type { FC } from 'react';
 
-const App: FC = () => (
-  <>
+const App: FC = () => {
+  const auth0 = useAuth0();
+  const name =
+    (auth0.user as Record<string, string | undefined>).name ?? 'Default Name';
+
+  return (
     <IonApp>
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle>A Dynamic React Page</IonTitle>
           <IonButtons slot="primary">
-            <IonButton color="light" onClick={() => navigate('/')}>
+            <IonButton color="light" onClick={async () => navigate('/')}>
               Back
+            </IonButton>
+            <IonButton
+              onClick={() =>
+                auth0.logout({ returnTo: window.location.origin })
+              }>
+              Logout
             </IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
+      <IonContent>
+        <IonCard>
+          <IonCardContent>Welcome back {name}</IonCardContent>
+        </IonCard>
+      </IonContent>
     </IonApp>
-  </>
-);
+  );
+};
 
-export default App;
+export default withAuthenticationRequired(App);

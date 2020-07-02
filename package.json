@@ -49,6 +49,7 @@
     "webpack-bundle-analyzer": "3.x"
   },
   "dependencies": {
+    "@auth0/auth0-react": "1.x",
     "@ionic/react": "5.x",
     "ionicons": "5.x",
     "react-dom": "16.x",

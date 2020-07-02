@@ -16,7 +16,11 @@
  * -------------------------------------------------------------------------
  */
 
-// import type { GatsbyBrowser } from 'gatsby';
+import { Auth0Provider } from '@auth0/auth0-react';
+import { navigate } from 'gatsby';
+import React from 'react';
+
+import type { GatsbyBrowser } from 'gatsby';
 
 // export const disableCorePrefetching: GatsbyBrowser['disableCorePrefetching'] = (): boolean => {};
 
@@ -42,3 +46,27 @@
 
 // export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = (parameters): JSX.Element => {};
 // export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = (parameters): JSX.Element => {};
+
+export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({
+  element,
+}): JSX.Element => {
+  const domain = process.env.GATSBY_AUTH0_DOMAIN;
+  const clientID = process.env.GATSBY_AUTH0_CLIENT_ID;
+
+  if (!domain || !clientID) {
+    throw new ReferenceError(`Auth0's domain or client id is undefined`);
+  }
+
+  return (
+    // for authentication
+    <Auth0Provider
+      domain={domain}
+      clientId={clientID}
+      redirectUri={window.location.origin}
+      onRedirectCallback={(appState) =>
+        navigate(appState?.returnTo || '/', { replace: true })
+      }>
+      {element}
+    </Auth0Provider>
+  );
+};
