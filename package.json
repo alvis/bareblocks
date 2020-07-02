@@ -49,6 +49,8 @@
     "webpack-bundle-analyzer": "3.x"
   },
   "dependencies": {
+    "@ionic/react": "5.x",
+    "ionicons": "5.x",
     "react-dom": "16.x",
     "react-helmet": "6.x"
   }

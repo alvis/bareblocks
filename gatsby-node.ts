@@ -86,8 +86,22 @@ export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = async ({
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
   stage,
   actions,
+  loaders,
 }) => {
   switch (stage) {
+    case 'build-html':
+      actions.setWebpackConfig({
+        module: {
+          rules: [
+            {
+              test: /@ionic/,
+              use: loaders.null(),
+            },
+          ],
+        },
+      });
+
+      break;
     case 'build-javascript':
       actions.setWebpackConfig({
         plugins: [

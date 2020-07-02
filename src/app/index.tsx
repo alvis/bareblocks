@@ -13,17 +13,36 @@
  * -------------------------------------------------------------------------
  */
 
-import { Link } from 'gatsby';
+import {
+  IonApp,
+  IonButton,
+  IonButtons,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react';
+import { navigate } from 'gatsby';
 import React from 'react';
+
+import '@ionic/core/css/core.css';
+import '@ionic/core/css/ionic.bundle.css';
 
 import type { FC } from 'react';
 
 const App: FC = () => (
   <>
-    <h1>A Dynamic React Page</h1>
-    <p>
-      <Link to="/">Back to the front page</Link>
-    </p>
+    <IonApp>
+      <IonHeader>
+        <IonToolbar color="primary">
+          <IonTitle>A Dynamic React Page</IonTitle>
+          <IonButtons slot="primary">
+            <IonButton color="light" onClick={() => navigate('/')}>
+              Back
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
+    </IonApp>
   </>
 );
 
