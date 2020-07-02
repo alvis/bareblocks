@@ -19,6 +19,7 @@
 
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import type { GatsbyNode } from 'gatsby';
 
@@ -79,6 +80,31 @@ export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = async ({
         ...path,
       },
     });
+  }
+};
+
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
+  stage,
+  actions,
+}) => {
+  switch (stage) {
+    case 'build-javascript':
+      actions.setWebpackConfig({
+        plugins: [
+          new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+            analyzerMode: 'static',
+            reportFilename: resolve(
+              __dirname,
+              'webpack-bundle-analyzer-report.html',
+            ),
+          }),
+        ],
+      });
+
+      break;
+    default:
+      break;
   }
 };
 
