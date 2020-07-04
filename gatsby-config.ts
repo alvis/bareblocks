@@ -16,6 +16,7 @@
  * -------------------------------------------------------------------------
  */
 
+import env from 'dotenv';
 import type { GatsbyConfig } from 'gatsby';
 
 // export const siteMetadata: GatsbyConfig['siteMetadata'] = {};
@@ -31,6 +32,10 @@ import type { GatsbyConfig } from 'gatsby';
 // export const proxy: GatsbyConfig['proxy'] = {};
 
 // export const developMiddleware: GatsbyConfig['developMiddleware'] = middleware => {};
+
+env.config({
+  path: `.env.${process.env.NODE_ENV ?? 'development'}`,
+});
 
 export const siteMetadata: GatsbyConfig['siteMetadata'] = {
   title: `A Gatsby Web App`,
